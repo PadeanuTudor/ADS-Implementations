@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class RBTree {
     private Node root;
     private final Node nully; ///sentinel node
@@ -7,37 +9,63 @@ public class RBTree {
         nully.color = false;
         root = nully;
     }
-
-    private void leftRotate(Node node) {
-        Node temp = node.right;
-        node.right = temp.left;
-        if(temp.left != nully)
-            temp.left.parent = node;
-        temp.parent = node.parent;
-        if(node.parent == null)
-            root = node;
-        else if(node == node.parent.left)
-            node.parent.left = temp;
-        else
-            node.parent.right = temp;
-        temp.left = node;
-        node.parent = temp;
+    public Node getNully(){
+        return nully;
+    }
+    public Node getRoot() {
+        return root;
     }
 
-    private void rightRotate(Node node) {
-        Node temp = node.left;
-        node.left = temp.right;
-        if(temp.right != nully)
-            temp.right.parent = node;
-        temp.parent = node.parent;
-        if(node.parent == null)
-            root = temp;
-        else if(node == node.parent.left)
-            node.parent.left = temp;
-        else
-            node.parent.right = temp;
-        temp.right = node;
-        node.parent = temp;
+    public void inorder(Node node, ArrayList<Integer> list){
+        if (node == nully)
+            return;
+        inorder(node.left, list);
+        list.add(node.nr);
+        inorder(node.right, list);
+    }
+
+    private void leftRotate(Node x) {
+        Node y = x.right;
+        x.right = y.left;
+
+        if (y.left != nully) {
+            y.left.parent = x;
+        }
+
+        y.parent = x.parent;
+
+        if (x.parent == null) {
+            this.root = y;
+        } else if (x == x.parent.left) {
+            x.parent.left = y;
+        } else {
+            x.parent.right = y;
+        }
+
+        y.left = x;
+        x.parent = y;
+    }
+
+    private void rightRotate(Node y) {
+        Node x = y.left;
+        y.left = x.right;
+
+        if (x.right != nully) {
+            x.right.parent = y;
+        }
+
+        x.parent = y.parent;
+
+        if (y.parent == null) {
+            this.root = x;
+        } else if (y == y.parent.right) {
+            y.parent.right = x;
+        } else {
+            y.parent.left = x;
+        }
+
+        x.right = y;
+        y.parent = x;
     }
 
     public void insert(int nr)
@@ -98,7 +126,7 @@ public class RBTree {
             }
             else /// mirror case
             {
-                Node uncle = node.parent.parent.right;
+                Node uncle = node.parent.parent.left;
                 if(uncle.color == true)
                 {
                     uncle.color = false;
@@ -238,12 +266,15 @@ public class RBTree {
 
     private void replace(Node x, Node y)
     {
-        if(x.parent == null)
+        if(x.parent == null) {
             root = y;
-        else if(x == x.parent.left)
+        }
+        else if(x == x.parent.left) {
             x.parent.left = y;
-        else
+        }
+        else {
             x.parent.right = y;
+        }
         y.parent = x.parent;
     }
 
@@ -289,7 +320,7 @@ public class RBTree {
                 {
                     sibling.color = false;
                     x.parent.color = true;
-                    leftRotate(x.parent);
+                    rightRotate(x.parent);
                     sibling = x.parent.left;
                 }
                 if(sibling.left.color == false && sibling.right.color == false)
@@ -303,13 +334,13 @@ public class RBTree {
                     {
                         sibling.right.color = false;
                         sibling.color = true;
-                        rightRotate(sibling);
+                        leftRotate(sibling);
                         sibling = x.parent.left;
                     }
                     sibling.color = x.parent.color;
                     x.parent.color = false;
                     sibling.left.color = false;
-                    leftRotate(x.parent);
+                    rightRotate(x.parent);
                     x = root;
                 }
             }
