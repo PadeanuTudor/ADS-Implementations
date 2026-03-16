@@ -1,4 +1,4 @@
-GitHub Repo: https://github.com/PadeanuTudor/ADS-Implementations/tree/main/Red-Black%20Tree
+GitHub Repo: https://github.com/PadeanuTudor/ADS-Implementations/tree/main/Dynamic%20Median
 
 How to use:
 
