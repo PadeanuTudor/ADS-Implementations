@@ -1,0 +1,20 @@
+https://github.com/PadeanuTudor/ADS-Implementations/tree/main/Live%20Leaderboard
+
+How to use:
+
+
+- Download the Live Leaderboard folder and open it in your Java IDE of choice
+- Run it
+- In the terminal, an self-explanatory menu should show.
+
+- 1 to check top k players, the program will ask for a k then display the top k players
+- 2 to add a new player, program will ask you for a player name and after that for a score
+- 3 to remove a player, program will ask for a player name to remove
+- 4 to update a player's score, program will ask for a bonus to be added to the player's score, either negative or positive
+- 0 to close the program
+- entering anything else will go back to the menu
+
+
+Important:
+- The leaderboard is empty by default, and it doesn't save it in-between runs
+- The program doesn't strip whitespace from player's name, so "player" and "player    " aren't the same
