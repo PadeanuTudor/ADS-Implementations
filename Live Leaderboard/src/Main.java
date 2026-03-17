@@ -15,7 +15,7 @@ void printOptions()
 void top(RBTree rbt) {
     if (rbt.getRoot() == rbt.getNully())
     {
-        IO.println("Tree's empty");
+        IO.println("The leaderboard's empty");
         return;
     }
     Scanner input =  new Scanner(System.in);
@@ -63,7 +63,7 @@ void update(RBTree rbt)
 {
     if (rbt.getRoot() == rbt.getNully())
     {
-        IO.println("Tree's empty");
+        IO.println("The leaderboard's empty");
         return;
     }
     Scanner input = new Scanner(System.in);
@@ -89,7 +89,7 @@ void remove(RBTree rbt)
 {
     if (rbt.getRoot() == rbt.getNully())
     {
-        IO.println("Tree's empty");
+        IO.println("The leaderboard's empty");
         return;
     }
     Scanner input = new Scanner(System.in);
@@ -140,7 +140,7 @@ void menu(RBTree rbt)
 }
 
 void main() {
-    IO.println(String.format("Leaderboard"));
+    IO.println(String.format("Live Leaderboard"));
     RBTree rbt  = new RBTree();
     menu(rbt);
 }
